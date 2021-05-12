@@ -1,6 +1,7 @@
+require 'dotenv/load'
 require 'sequel'
 
-DB = Sequel.connect('postgres://postgres:@localhost:5432/postgres')
+DB = Sequel.connect(ENV['PG'])
 
 require './application.rb'
 

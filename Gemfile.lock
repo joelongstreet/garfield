@@ -9,6 +9,7 @@ GEM
       zeitwerk (~> 2.3)
     builder (3.2.4)
     concurrent-ruby (1.1.8)
+    dotenv (2.7.6)
     dry-configurable (0.12.1)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.5, >= 0.5.0)
@@ -57,6 +58,7 @@ PLATFORMS
   universal-darwin-20
 
 DEPENDENCIES
+  dotenv (~> 2.7)
   grape (~> 1.5.3)
   json (~> 2.5)
   pg (~> 1.2.3)

@@ -1,13 +1,14 @@
+require 'dotenv/load'
+
 namespace :db do
   require 'sequel/core'
+  DB = Sequel.connect(ENV['PG'])
 
   desc 'Migrate the database'
   task :migrate, [:version] do |t, args|
     Sequel.extension :migration
     version = args[:version].to_i if args[:version]
-    Sequel.connect('postgres://postgres:@localhost:5432/postgres') do |db|
-      Sequel::Migrator.run(db, 'migrations', target: version)
-    end
+    Sequel::Migrator.run(DB, 'migrations', target: version)
   end
 
   desc 'Seed the database'
@@ -18,7 +19,6 @@ namespace :db do
     peoples_names = csv_table.by_col[0].uniq
     pizzas_types = csv_table.by_col[1].uniq
 
-    DB = Sequel.connect('postgres://postgres:@localhost:5432/postgres')
     people = DB[:people]
     pizzas = DB[:pizzas]
     pizzas_consumptions = DB[:pizzas_consumptions]
