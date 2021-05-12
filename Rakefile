@@ -34,10 +34,12 @@ namespace :db do
     csv_table.each { |row|
       person = DB[:people][{ name: row[0] }]
       pizza = DB[:pizzas][{ type: row[1] }]
+      eaten_at = row[2]
 
       pizzas_consumptions.insert(
         pizza_id: pizza[:id],
-        person_id: person[:id]
+        person_id: person[:id],
+        eaten_at: eaten_at
       )
     }
   end
