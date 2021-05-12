@@ -5,11 +5,13 @@ Sequel::Model.plugin :json_serializer
 module Garfield
   module API
     require './app/api/person'
+    require './app/api/pizza'
     require './app/api/pizzas_consumptions'
   end
 
   module Models
     require './app/models/person'
+    require './app/models/pizza'
     require './app/models/pizzas_consumptions'
   end
 
@@ -17,6 +19,7 @@ module Garfield
     format :json
   
     mount Garfield::API::Person
+    mount Garfield::API::Pizza
     mount Garfield::API::Pizzas_Consumptions
   end
 end
