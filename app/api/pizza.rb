@@ -22,5 +22,13 @@ class Garfield::API::Pizza < Grape::API
 
       Garfield::Models::Pizza.create(type: params[:type])
     end
+
+    delete ':id' do
+      params do
+        requires :id, type: Integer
+      end
+
+      Garfield::Models::Pizza[params[:id]].delete
+    end
   end
 end
