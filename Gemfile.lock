@@ -36,6 +36,7 @@ GEM
       rack-accept
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    json (2.5.1)
     minitest (5.14.4)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
@@ -57,6 +58,7 @@ PLATFORMS
 
 DEPENDENCIES
   grape (~> 1.5.3)
+  json (~> 2.5)
   pg (~> 1.2.3)
   rake (~> 13.0.3)
   sequel (~> 5.44.0)

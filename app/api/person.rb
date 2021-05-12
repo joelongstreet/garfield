@@ -1,7 +1,7 @@
 class Garfield::Person < Grape::API
   resource :people do
     get do
-      { name: 'Joe' }
+      Garfield::Models::Person.all
     end
   end
 end

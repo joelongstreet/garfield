@@ -10,3 +10,8 @@ class Garfield::Api < Grape::API
 
   mount Garfield::Person
 end
+
+Sequel::Model.plugin :json_serializer
+module Garfield::Models 
+  require './app/models/person'
+end
