@@ -17,6 +17,12 @@ module Garfield
 
   class Api < Grape::API
     format :json
+
+    rescue_from Grape::Exceptions::ValidationErrors do |e|
+      error! e, 400
+    end
+
+    rescue_from :all
   
     mount Garfield::API::Person
     mount Garfield::API::Pizza
