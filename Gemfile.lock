@@ -9,6 +9,7 @@ GEM
       zeitwerk (~> 2.3)
     builder (3.2.4)
     concurrent-ruby (1.1.8)
+    diff-lcs (1.4.4)
     dotenv (2.7.6)
     dry-configurable (0.12.1)
       concurrent-ruby (~> 1.0)
@@ -28,6 +29,8 @@ GEM
       dry-core (~> 0.5, >= 0.5)
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 1.0, >= 1.0.2)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
     grape (1.5.3)
       activesupport
       builder
@@ -47,8 +50,24 @@ GEM
     rack-accept (0.4.5)
       rack (>= 0.4)
     rake (13.0.3)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
+    rspec-core (3.10.1)
+      rspec-support (~> 3.10.0)
+    rspec-expectations (3.10.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-mocks (3.10.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-support (3.10.2)
     ruby2_keywords (0.0.4)
     sequel (5.44.0)
+    shotgun (0.9.2)
+      rack (>= 1.0)
+    sqlite (1.0.2)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     zeitwerk (2.4.2)
@@ -58,10 +77,14 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv (~> 2.7)
+  factory_bot (~> 6.2)
   grape (~> 1.5.3)
   pg (~> 1.2.3)
   rake (~> 13.0.3)
+  rspec (~> 3.10)
   sequel (~> 5.44.0)
+  shotgun (~> 0.9.2)
+  sqlite (~> 1.0)
 
 RUBY VERSION
    ruby 2.6.3p62

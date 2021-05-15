@@ -5,6 +5,7 @@ class Garfield::Models::Pizzas_Consumptions < Sequel::Model
   dataset_module do
     group_and_count(:group_by_eaten_at, :eaten_at)
     order(:order_by_count, Sequel.desc(:count))
+    order(:order_by_eaten_at, Sequel.asc(:eaten_at))
     
     def filter_by_month(month)
       where(
