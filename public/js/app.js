@@ -1,23 +1,54 @@
-function App() {
-  return (
-    <div className='grid grid-cols-3'>
-      <Character />
-      <div className='col-span-2'>
-        <h1 className='text-5xl mb-4 text-green-500 p-4 bg-gradient-to-b from-indigo-100 to-white'>Garfield Pizza Machine</h1>
-        <ButtonInput
-          label='Create Pizza'
-          placeholder='Pepperoni'
-          buttonTitle='Create'
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      pizzasCreated: 0,
+    }
+
+    this.onPizzaCreation = this.onPizzaCreation.bind(this);
+  }
+
+  onPizzaCreation() {
+    this.setState((state) => ({
+      pizzasCreated: state.pizzasCreated + 1
+    }));
+  }
+
+  render() {
+    return (
+      <div className='grid grid-cols-3'>
+        <Character
+          pizzasCreated={this.state.pizzasCreated}
         />
+        <div className='col-span-2'>
+          <h1 className='text-5xl mb-4 text-green-500 p-4 bg-gradient-to-b from-indigo-100 to-white'>Garfield Pizza Machine</h1>
+          <ButtonInput
+            onSubmit={this.onPizzaCreation}
+            label='Create Pizza'
+            placeholder='Pepperoni'
+            buttonTitle='Create'
+          />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 class Character extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div>
+        <img
+          src='/img/pizza.jpeg'
+          key={this.props.pizzasCreated}
+          className='w-24 h-24 rounded border-4 rounded-full border-indigo-700 p-2 shadow mx-auto fade-up opacity-0 mt-8'
+          style={{transition: '.5s linear'}}
+        />
         <img src='/img/garfield.jpeg' />;
       </div>
     )
@@ -37,6 +68,10 @@ class ButtonInput extends React.Component {
 
   handleSubmit(e) {
     console.log('input value:', this.state.inputValue);
+    if (this.props.onSubmit) {
+      this.props.onSubmit(this.state.inputValue);
+    }
+
     this.setState({ inputValue: '' })
     e.preventDefault();
   }

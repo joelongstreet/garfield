@@ -7,3 +7,26 @@
 h1 {
   font-family: 'Indie Flower', cursive;
 }
+
+.fade-up {
+  animation: fade-in-out 1.5s;
+}
+
+@keyframes fade-in-out {
+  0% {
+    transform: translatey(9rem);
+    opacity: 0;
+  }
+  50% {
+    transform: translatey(0rem);
+    opacity: 1;
+  }
+  75% {
+    transform: translatey(0rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translatey(9rem);
+    opacity: 0;
+  }
+}
