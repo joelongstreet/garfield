@@ -9,10 +9,12 @@ class App extends React.Component {
     this.onPizzaCreation = this.onPizzaCreation.bind(this);
   }
 
-  onPizzaCreation() {
-    this.setState((state) => ({
-      pizzasCreated: state.pizzasCreated + 1
-    }));
+  onPizzaCreation(inputValue) {
+    window.HttpService.createPizza(inputValue).then(() => {
+      this.setState((state) => ({
+        pizzasCreated: state.pizzasCreated + 1
+      }));
+    });
   }
 
   render() {
