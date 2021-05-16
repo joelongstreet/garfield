@@ -13,5 +13,17 @@ window.HttpService = {
       },
       body: JSON.stringify({ type })
     });
-  }
+  },
+
+  findPizzasByType: (type) => {
+    let query = '';
+    if (type) query = `?type=${type}`;
+
+    return fetch(`/pizzas${query}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  },
 };
