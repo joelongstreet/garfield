@@ -1,3 +1,9 @@
+const defaultHttpParams = {
+  headers: {
+    'Content-Type': 'application/json',
+  },  
+}
+
 window.HttpService = {
   createPizza: (type) => {
     const errorMessage = 'No pizza type specified';
@@ -8,10 +14,8 @@ window.HttpService = {
 
     return fetch('/pizzas', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ type })
+      body: JSON.stringify({ type }),
+      ...defaultHttpParams,
     });
   },
 
@@ -21,9 +25,17 @@ window.HttpService = {
 
     return fetch(`/pizzas${query}`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      ...defaultHttpParams,
     });
   },
+
+  findPeopleByName: (name) => {
+    let query = '';
+    if (name) query = `?name=${name}`;
+
+    return fetch(`/people${query}`, {
+      method: 'GET',
+      ...defaultHttpParams,
+    });
+  }
 };

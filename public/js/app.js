@@ -5,10 +5,12 @@ class App extends React.Component {
     this.state = {
       pizzasCreated: 0,
       pizzasSearchValues: [],
+      peopleSearchValues: [],
     }
 
     this.onPizzaCreation = this.onPizzaCreation.bind(this);
     this.onPizzaSearch = this.onPizzaSearch.bind(this);
+    this.onPeopleSearch = this.onPeopleSearch.bind(this);
   }
 
   onPizzaCreation(inputValue) {
@@ -27,21 +29,29 @@ class App extends React.Component {
     });
   }
 
+  onPeopleSearch(inputValue) {
+    window.HttpService.findPeopleByName(inputValue).then((res) => {
+      res.json().then((people) => {
+        this.setState({ peopleSearchValues: people });
+      });
+    });
+  }
+
   render() {
     return (
-      <div className='grid grid-cols-3'>
+      <div className='grid gap-8 grid-cols-3'>
         <Character
           pizzasCreated={this.state.pizzasCreated}
         />
         <div className='col-span-2'>
-          <h1 className='text-5xl mb-4 text-green-500 p-4 bg-gradient-to-b from-indigo-100 to-white'>Garfield Pizza Machine</h1>
+          <h1 className='text-5xl mb-4 text-green-500 p-4 bg-gradient-to-b from-indigo-100 to-white mb-12'>Garfield Pizza Machine</h1>
           <ButtonInput
             onSubmit={this.onPizzaCreation}
             label='Create Pizza'
             placeholder='Anchovy'
             buttonTitle='Create'
           />
-          <hr className='mb-4' />
+          <hr className='mb-12' />
           <ButtonInput
             onSubmit={this.onPizzaSearch}
             label='Find pizza by type'
@@ -51,6 +61,17 @@ class App extends React.Component {
           <List
             data={this.state.pizzasSearchValues}
             displayKey='type'
+          />
+          <hr className='mb-12' />
+          <ButtonInput
+            onSubmit={this.onPeopleSearch}
+            label='Find people by name'
+            placeholder='Jon Arbuckle'
+            buttonTitle='Search'
+          />
+          <List
+            data={this.state.peopleSearchValues}
+            displayKey='name'
           />
         </div>
       </div>
