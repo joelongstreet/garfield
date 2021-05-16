@@ -6,7 +6,7 @@ DB = Sequel.connect(ENV['PG'])
 require './application.rb'
 
 use Rack::Static,
-  :urls => ['/img', '/js'],
+  :urls => ['/img', '/js', '/css'],
   :root => 'public'
 
 map '/app' do
