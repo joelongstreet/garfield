@@ -8,6 +8,14 @@ h1 {
   font-family: 'Indie Flower', cursive;
 }
 
+.jon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
+  width: 5rem;
+}
+
 .fade-up {
   animation: fade-in-out 1.5s;
 }
