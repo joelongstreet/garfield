@@ -29,6 +29,19 @@ window.HttpService = {
     });
   },
 
+  deletePizza: (id) => {
+    const errorMessage = 'No pizza id specified';
+    if (!id) return new Promise((resolve, reject) => {
+      alert(errorMessage);
+      reject(errorMessage);
+    });
+
+    return fetch(`/pizzas/${id}`, {
+      method: 'DELETE',
+      ...defaultHttpParams,
+    });
+  },
+
   findPeopleByName: (name) => {
     let query = '';
     if (name) query = `?name=${name}`;

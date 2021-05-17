@@ -10,6 +10,7 @@ class App extends React.Component {
 
     this.onPizzaCreation = this.onPizzaCreation.bind(this);
     this.onPizzaSearch = this.onPizzaSearch.bind(this);
+    this.onPizzaDelete = this.onPizzaDelete.bind(this);
     this.onPeopleSearch = this.onPeopleSearch.bind(this);
   }
 
@@ -26,6 +27,13 @@ class App extends React.Component {
       res.json().then((pizzas) => {
         this.setState({ pizzasSearchValues: pizzas });
       });
+    });
+  }
+
+  onPizzaDelete(id) {
+    window.HttpService.deletePizza(id).then((res) => {
+      const pizzas = this.state.pizzasSearchValues.filter(p => p.id != id)
+      this.setState({ pizzasSearchValues: pizzas });
     });
   }
 
@@ -60,6 +68,7 @@ class App extends React.Component {
           />
           <List
             data={this.state.pizzasSearchValues}
+            onDelete={this.onPizzaDelete}
             displayKey='type'
           />
           <hr className='mb-12' />
