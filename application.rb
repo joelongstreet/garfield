@@ -1,4 +1,5 @@
 require 'grape'
+require 'sequel'
 
 Sequel::Model.plugin :json_serializer
 

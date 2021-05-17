@@ -13,6 +13,6 @@ gem "rspec", "~> 3.10"
 
 gem "shotgun", "~> 0.9.2", :group => :development
 
-gem "factory_bot", "~> 6.2", :group => :test
+gem "rack-test", "~> 1.1", :group => :test
 
-gem "sqlite", "~> 1.0", :group => :test
+gem "pry", "~> 0.14.1", :group => :development
