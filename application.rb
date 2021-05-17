@@ -9,11 +9,7 @@ module Garfield
     require './app/api/pizzas_consumptions'
   end
 
-  module Models
-    require './app/models/person'
-    require './app/models/pizza'
-    require './app/models/pizzas_consumptions'
-  end
+  module Models end
 
   class Api < Grape::API
     format :json
@@ -23,9 +19,11 @@ module Garfield
     end
 
     rescue_from :all
-  
-    mount Garfield::API::Person
-    mount Garfield::API::Pizza
-    mount Garfield::API::Pizzas_Consumptions
+    
+    def self.mountRoutes
+      mount Garfield::API::Person, with: { Person: configuration[:Person_Repo] }
+      mount Garfield::API::Pizza, with: { Pizza: configuration[:Pizza_Repo] }
+      mount Garfield::API::Pizzas_Consumptions, with: { Pizzas_Consumptions: configuration[:Pizzas_Consumptions_Repo] }
+    end
   end
 end

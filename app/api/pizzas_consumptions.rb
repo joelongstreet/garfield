@@ -1,14 +1,14 @@
 class Garfield::API::Pizzas_Consumptions < Grape::API
   resource :pizzas_consumptions do
     get do
-      Garfield::Models::Pizzas_Consumptions.all
+      configuration[:Pizzas_Consumptions].all
     end
 
     params do
       optional :month_id, type: Integer
     end
     get '/count-by-day' do
-      data_set = Garfield::Models::Pizzas_Consumptions
+      data_set = configuration[:Pizzas_Consumptions]
         .group_by_eaten_at
         .order_by_count
       
@@ -23,9 +23,9 @@ class Garfield::API::Pizzas_Consumptions < Grape::API
       data_set.naked
     end
 
-    get '/streakz' do
+    get '/streak' do
       jagged_streaks = []
-      consumptions_by_date = Garfield::Models::Pizzas_Consumptions
+      consumptions_by_date = configuration[:Pizzas_Consumptions]
         .group_by_eaten_at
         .order_by_eaten_at
         .naked

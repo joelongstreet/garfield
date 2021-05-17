@@ -4,7 +4,7 @@ class Garfield::API::Pizza < Grape::API
       optional :type, type: String
     end
     get do
-      data_set = Garfield::Models::Pizza
+      data_set = configuration[:Pizza]
       if (params.key?(:type))
         data_set = data_set.filter_by_type(params[:type])
       end
@@ -17,7 +17,7 @@ class Garfield::API::Pizza < Grape::API
       requires :type, type: String
     end
     put ':id' do
-      pizza = Garfield::Models::Pizza[params[:id]]
+      pizza = configuration[:Pizza][params[:id]]
       pizza.update(type: params[:type])
       pizza
     end
@@ -26,14 +26,14 @@ class Garfield::API::Pizza < Grape::API
       requires :type, type: String
     end
     post do
-      Garfield::Models::Pizza.create(type: params[:type])
+      configuration[:Pizza].create(type: params[:type])
     end
 
     params do
       requires :id, type: Integer
     end
     delete ':id' do
-      Garfield::Models::Pizza[params[:id]].delete
+      configuration[:Pizza][params[:id]].delete
     end
   end
 end

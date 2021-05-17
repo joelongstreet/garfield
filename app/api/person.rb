@@ -4,7 +4,7 @@ class Garfield::API::Person < Grape::API
       optional :name, type: String
     end
     get do
-      data_set = Garfield::Models::Person
+      data_set = configuration[:Person]
       if (params.key?(:name))
         data_set = data_set.filter_by_name(params[:name])
       end
