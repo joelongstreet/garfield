@@ -43,4 +43,11 @@ namespace :db do
       )
     }
   end
+
+  desc 'Empty the database'
+  task :empty do |t|
+    DB[:people].delete
+    DB[:pizzas].delete
+    DB[:pizzas_consumptions].delete
+  end
 end
